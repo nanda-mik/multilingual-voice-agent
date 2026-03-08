@@ -79,36 +79,17 @@ voice-agent-workshop/
 
 ### pipeline.py (the core)
 
-| Function / Class          | Lines  | Purpose                                |
-|---------------------------|--------|----------------------------------------|
-| `VoiceActivityDetector`   | ~40    | Load Silero VAD, trim silence from audio |
-| `transcribe()`            | ~15    | Call Sarvam STT API                     |
-| `ask_llm()`               | ~20    | Call Gemini Flash with conversation history |
-| `synthesize()`            | ~25    | Call Sarvam TTS streaming API           |
-| `run_pipeline()`          | ~30    | Chain all four, log timing per step     |
+| Function / Class          | Purpose                                |
+|---------------------------|----------------------------------------|
+| `VoiceActivityDetector`   | Load Silero VAD, trim silence from audio |
+| `transcribe()`            | Call Sarvam STT API                     |
+| `ask_llm()`               | Call Gemini Flash with conversation history |
+| `synthesize()`            | Call Sarvam TTS streaming API           |
+| `run_pipeline()`          | Chain all four, log timing per step     |
 
 ### app.py (the UI)
 
 A Gradio Blocks app with a microphone, language dropdown, chatbot display, and auto-playing audio output. Under 100 lines.
-
----
-
-## Session Agenda (75 min teaching + 15 min Q&A)
-
-| Time  | Min | Topic                                                  |
-|-------|-----|--------------------------------------------------------|
-| 0:00  | 10  | Intro + Architecture walkthrough                       |
-| 0:10  | 10  | Environment setup (clone, pip install, .env)           |
-| 0:20  | 8   | Component 1: VAD -- Silero VAD, live-code + demo       |
-| 0:28  | 8   | Component 2: STT -- Sarvam saarika, live-code + demo   |
-| 0:36  | 8   | Component 3: LLM -- Gemini Flash, live-code + demo     |
-| 0:44  | 8   | Component 4: TTS -- Sarvam bulbul streaming, live-code |
-| 0:52  | 8   | Pipeline orchestration + latency discussion            |
-| 1:00  | 10  | Gradio UI + end-to-end demo                            |
-| 1:10  | 5   | Homework brief: tool calling                           |
-| 1:15  | 15  | Q&A                                                    |
-
----
 
 ## Homework: Tool Calling
 
@@ -131,14 +112,3 @@ See `homework_tool_calling.py` for full instructions and working code.
 Hindi, English, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Odia, Punjabi.
 
 ---
-
-## Troubleshooting
-
-| Problem                          | Fix                                                  |
-|----------------------------------|------------------------------------------------------|
-| `ModuleNotFoundError: torch`     | Run `pip install torch torchaudio`                   |
-| VAD model download fails         | Check internet connection; torch hub needs GitHub access |
-| "No speech detected"             | Speak louder / closer to mic; check mic permissions  |
-| STT returns empty                | Verify `SARVAM_API_KEY` in `.env`                    |
-| Gemini 403 error                 | Verify `GEMINI_API_KEY` in `.env`; check quota       |
-| TTS returns no audio             | Verify `SARVAM_API_KEY`; check language code match   |
