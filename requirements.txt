@@ -1,0 +1,9 @@
+gradio>=5.0
+sarvamai
+google-genai
+torch
+torchaudio
+torchcodec
+requests
+python-dotenv
+numpy
